@@ -1,0 +1,182 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="doxygen">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="compounddef">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="compoundname" type="xs:string" />
+              <xs:element name="basecompoundref">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="refid" type="xs:string" use="required" />
+                      <xs:attribute name="prot" type="xs:string" use="required" />
+                      <xs:attribute name="virt" type="xs:string" use="required" />
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="sectiondef">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="memberdef">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="type" type="xs:string" />
+                          <xs:element name="definition" type="xs:string" />
+                          <xs:element name="argsstring" type="xs:string" />
+                          <xs:element name="name" type="xs:string" />
+                          <xs:element name="briefdescription" type="xs:string" />
+                          <xs:element name="detaileddescription" type="xs:string" />
+                          <xs:element name="inbodydescription" type="xs:string" />
+                          <xs:element name="location">
+                            <xs:complexType>
+                              <xs:attribute name="file" type="xs:string" use="required" />
+                              <xs:attribute name="line" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="column" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="bodyfile" type="xs:string" use="required" />
+                              <xs:attribute name="bodystart" type="xs:unsignedByte" use="required" />
+                              <xs:attribute name="bodyend" type="xs:unsignedByte" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="kind" type="xs:string" use="required" />
+                        <xs:attribute name="id" type="xs:string" use="required" />
+                        <xs:attribute name="prot" type="xs:string" use="required" />
+                        <xs:attribute name="static" type="xs:string" use="required" />
+                        <xs:attribute name="const" type="xs:string" use="required" />
+                        <xs:attribute name="explicit" type="xs:string" use="required" />
+                        <xs:attribute name="inline" type="xs:string" use="required" />
+                        <xs:attribute name="virt" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="kind" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="briefdescription" type="xs:string" />
+              <xs:element name="detaileddescription" type="xs:string" />
+              <xs:element name="inheritancegraph">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="node">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="label" type="xs:string" />
+                          <xs:element minOccurs="0" name="link">
+                            <xs:complexType>
+                              <xs:attribute name="refid" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" name="childnode">
+                            <xs:complexType>
+                              <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                  <xs:attribute name="refid" type="xs:unsignedInt" use="required" />
+                                  <xs:attribute name="relation" type="xs:string" use="required" />
+                                </xs:extension>
+                              </xs:simpleContent>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:unsignedInt" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="collaborationgraph">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="node">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="label" type="xs:string" />
+                          <xs:element minOccurs="0" name="link">
+                            <xs:complexType>
+                              <xs:attribute name="refid" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element minOccurs="0" maxOccurs="unbounded" name="childnode">
+                            <xs:complexType mixed="true">
+                              <xs:sequence minOccurs="0">
+                                <xs:element maxOccurs="unbounded" name="edgelabel" type="xs:string" />
+                              </xs:sequence>
+                              <xs:attribute name="refid" type="xs:unsignedInt" use="required" />
+                              <xs:attribute name="relation" type="xs:string" use="required" />
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id" type="xs:unsignedInt" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="location">
+                <xs:complexType>
+                  <xs:attribute name="file" type="xs:string" use="required" />
+                  <xs:attribute name="line" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="column" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="bodyfile" type="xs:string" use="required" />
+                  <xs:attribute name="bodystart" type="xs:unsignedByte" use="required" />
+                  <xs:attribute name="bodyend" type="xs:unsignedByte" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="listofallmembers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="member">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="scope" type="xs:string" />
+                          <xs:element name="name" type="xs:string" />
+                        </xs:sequence>
+                        <xs:attribute name="refid" type="xs:string" use="required" />
+                        <xs:attribute name="prot" type="xs:string" use="required" />
+                        <xs:attribute name="virt" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="kind" type="xs:string" use="required" />
+            <xs:attribute name="prot" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema><?xml version="1.0"?>
+<xs:schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="doxygenindex">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="compound">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" />
+              <xs:element minOccurs="0" maxOccurs="unbounded" name="member">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="name" type="xs:string" />
+                  </xs:sequence>
+                  <xs:attribute name="refid" type="xs:string" use="required" />
+                  <xs:attribute name="kind" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="refid" type="xs:string" use="required" />
+            <xs:attribute name="kind" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
